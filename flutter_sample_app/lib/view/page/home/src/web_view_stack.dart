@@ -18,6 +18,7 @@ class _WebViewStackState extends State<WebViewStack> {
       children: [
         WebView(
           initialUrl: 'https://www.naver.com',
+          javascriptMode: JavascriptMode.unrestricted,
           onPageStarted: (url) {
             setState(() {
               loadingPercentage = 0;
