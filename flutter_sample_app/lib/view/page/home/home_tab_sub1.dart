@@ -13,14 +13,14 @@ class HomeTabSub1State extends State<HomeTabSub1> {
   @override
   void initState() {
     super.initState();
-    // Enable virtual display.
+    // 웹 뷰 실행
     if (Platform.isAndroid) WebView.platform = AndroidWebView();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const WebViewStack(),
+      body: const WebViewStack(), //웹 뷰 나오는 애니메이션 효과(서서히)
     );
   }
 }
