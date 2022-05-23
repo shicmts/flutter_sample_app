@@ -3,13 +3,11 @@ import 'package:flutter_sample_app/view/page/home/home_tab_main.dart';
 import 'package:flutter_sample_app/view/page/home/home_tab_sub1.dart';
 import 'package:flutter_sample_app/view/page/home/home_tab_sub2.dart';
 
-class HomePageMain extends StatefulWidget{
-
+class HomePageMain extends StatefulWidget {
   const HomePageMain({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _HomePageMainState();
-
 }
 
 class _HomePageMainState extends State<HomePageMain> {
@@ -19,9 +17,9 @@ class _HomePageMainState extends State<HomePageMain> {
     Tab(text: "서브2")
   ];
 
-  static const List<Widget> _views = [
+  static List<Widget> _views = [
     HomeTabMain(),
-    HomeTabSub1(),
+    HomeTabSub1(), //statefulwidget으로 const 제거
     HomeTabSub2()
   ];
 
@@ -31,15 +29,10 @@ class _HomePageMainState extends State<HomePageMain> {
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
-          appBar: AppBar(
-              bottom: const TabBar(tabs: _tabs)
-          ),
-          body: const TabBarView(children: _views),
+          appBar: AppBar(bottom: const TabBar(tabs: _tabs)),
+          body: TabBarView(children: _views),
         ),
       ),
-
     );
   }
-
-
 }
