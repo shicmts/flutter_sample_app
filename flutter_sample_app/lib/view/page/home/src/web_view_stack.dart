@@ -17,8 +17,7 @@ class _WebViewStackState extends State<WebViewStack> {
     return Stack(
       children: [
         WebView(
-          initialUrl:
-              'https://open2.shinhaninvest.com/mobilealpha/html/TR/SB2280M49.html',
+          initialUrl: 'https://www.naver.com',
           onPageStarted: (url) {
             setState(() {
               loadingPercentage = 0;
