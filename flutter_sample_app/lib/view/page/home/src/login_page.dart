@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -6,18 +7,33 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  static const platform = MethodChannel('com.sample.shicmts');
   final formKey = new GlobalKey<FormState>(); //하단 메세지 키
 
   late String _email;
   late String _password;
-
-  void validateAndSave() {
+  late String _result;
+  void saveAndGetUserList() {
     final form = formKey.currentState;
     if (form!.validate()) {
       form.save();
       print('Form is valid Email: $_email, password: $_password');
-    } else {
-      print('Form is invalid Email: $_email, password: $_password');
+      String email = _email;
+      String password = _password;
+      String result = 'null';
+      Future<Null> _getBatteryLevel(email, password) async {
+        try {
+          result = await platform.invokeMethod(
+              'getUserList', {"email": email, "password": password});
+          print('정보를 제대로 가져왔습니다.');
+        } on PlatformException catch (e) {
+          result = "정보를 가지고 오지 못했습니다. ${e.message}";
+        }
+
+        setState(() {
+          _result = result;
+        });
+      }
     }
   }
 
@@ -49,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                   'Login',
                   style: TextStyle(fontSize: 20.0),
                 ),
-                onPressed: validateAndSave,
+                onPressed: saveAndGetUserList,
               ),
             ],
           ),
