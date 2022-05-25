@@ -10,11 +10,6 @@ import 'src/login_page.dart';
 /// 3. 리스트로 보이기
 /// 4. 로컬로 푸시 보내보기
 // class HomeTabMain extends StatelessWidget {
-//   // Widget build(BuildContext context) {
-//   //   return MaterialApp(
-//   //     home: LoginPage(),
-//   //   );
-//   // }
 
 //   // @override
 //   // Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:async';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,7 +14,8 @@ class _LoginPageState extends State<LoginPage> {
   late String _email;
   late String _password;
   late String _result;
-  void saveAndGetUserList() {
+
+  Future<void> _saveAndGetUserList() async {
     final form = formKey.currentState;
     if (form!.validate()) {
       form.save();
@@ -21,19 +23,50 @@ class _LoginPageState extends State<LoginPage> {
       String email = _email;
       String password = _password;
       String result = 'null';
-      Future<Null> _getBatteryLevel(email, password) async {
-        try {
-          result = await platform.invokeMethod(
-              'getUserList', {"email": email, "password": password});
-          print('정보를 제대로 가져왔습니다.');
-        } on PlatformException catch (e) {
-          result = "정보를 가지고 오지 못했습니다. ${e.message}";
-        }
+      try {
+        result = await platform.invokeMethod("getUserList", {
+          "email": email,
+          "password": password
+        }); //, {"email": email, "password": password}
 
-        setState(() {
-          _result = result;
-        });
+        if (result == "100") {
+          showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('로그인'),
+                  content: SingleChildScrollView(
+                    child: ListBody(
+                      children: <Widget>[
+                        Text(
+                            "정상적으로 로그인 되었습니다. email:${email}, password:${password}")
+                      ],
+                    ),
+                  ),
+                  actions: <Widget>[
+                    FlatButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('ok')),
+                    FlatButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('cancel')),
+                  ],
+                );
+              });
+        }
+        print('정보를 제대로 가져왔습니다. ${result}');
+      } on PlatformException catch (e) {
+        print("정보를 가지고 오지 못했습니다. ${e.message}");
       }
+
+      setState(() {
+        _result = result;
+      });
     }
   }
 
@@ -65,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                   'Login',
                   style: TextStyle(fontSize: 20.0),
                 ),
-                onPressed: saveAndGetUserList,
+                onPressed: _saveAndGetUserList,
               ),
             ],
           ),
