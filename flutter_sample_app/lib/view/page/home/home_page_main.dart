@@ -14,13 +14,13 @@ class _HomePageMainState extends State<HomePageMain> {
   static const List<Tab> _tabs = [
     Tab(text: "메인"),
     Tab(text: "서브1"),
-    Tab(text: "서브2")
+    Tab(text: "서브2"),
   ];
 
   static List<Widget> _views = [
     HomeTabMain(),
     HomeTabSub1(), //statefulwidget으로 const 제거
-    HomeTabSub2()
+    HomeTabSub2(),
   ];
 
   @override
