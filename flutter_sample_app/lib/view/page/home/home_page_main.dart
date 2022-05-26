@@ -17,7 +17,7 @@ class _HomePageMainState extends State<HomePageMain> {
     Tab(text: "서브2")
   ];
 
-  static List<Widget> _views = [
+  static final List<Widget> _views = [
     HomeTabMain(),
     HomeTabSub1(), //statefulwidget으로 const 제거
     HomeTabSub2()
