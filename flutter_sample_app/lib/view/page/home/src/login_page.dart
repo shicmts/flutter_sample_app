@@ -7,7 +7,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  static const platform = MethodChannel('com.sample.shicmts');
+  static const platform = MethodChannel('com.shicmts.flutter_sample_app');
   final formKey = new GlobalKey<FormState>(); //하단 메세지 키
 
   late String _email;

@@ -12,20 +12,17 @@ class RootPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
         bottomNavigationBar: NavigationBarTheme(
-          data: NavigationBarThemeData(
-            indicatorColor: Colors.transparent,
-            labelTextStyle: MaterialStateProperty.all(
-              const TextStyle(
-                  fontSize: 18, fontWeight: FontWeight.w900, color: Colors.white),
+            data: NavigationBarThemeData(
+              indicatorColor: Colors.transparent,
+              labelTextStyle: MaterialStateProperty.all(
+                const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white),
+              ),
             ),
-          ),
-          child: const HomePageMain()
-        )
-    );
+            child: const HomePageMain()));
   }
-  
 }

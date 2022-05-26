@@ -19,8 +19,8 @@ class HomeTabSub1State extends State<HomeTabSub1> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const WebViewStack(), //웹 뷰 나오는 애니메이션 효과(서서히)
+    return WebView(
+      initialUrl: 'https://www.naver.com',
     );
   }
 }

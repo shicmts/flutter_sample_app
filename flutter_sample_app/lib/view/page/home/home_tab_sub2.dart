@@ -13,7 +13,7 @@ class HomeTabSub2 extends StatefulWidget {
 class _HomeTabSub2State extends State<HomeTabSub2> {
   final List<int> colorCodes = <int>[900, 600, 500, 100];
   OS _os = OS.android;
-  static const platform = MethodChannel('com.shicmts.flutter_sample_app/tab2');
+  static const platform = MethodChannel('com.shicmts.flutter_sample_app');
   String _batteryLevel = 'Unknown battery level.';
 
   Future<void> _getBatteryLevel() async {
@@ -34,7 +34,7 @@ class _HomeTabSub2State extends State<HomeTabSub2> {
     await platform.invokeMethod('showToast');
   }
 
-  Widget osListView(List<String> entries){
+  Widget osListView(List<String> entries) {
     return ListView.builder(
         padding: const EdgeInsets.all(8),
         itemCount: entries.length,
@@ -49,7 +49,6 @@ class _HomeTabSub2State extends State<HomeTabSub2> {
 
   @override
   Widget build(BuildContext context) {
-
     return Material(
       child: Center(
         child: Column(
@@ -59,45 +58,38 @@ class _HomeTabSub2State extends State<HomeTabSub2> {
               onPressed: _getBatteryLevel,
               child: const Text('NATIVE :: Get Battery Level'),
             ),
-
             Text(_batteryLevel),
-
             OutlinedButton(
-              onPressed: _showToast,
-              child: const Text("NATIVE :: Show Toast Message")
-            ),
-
+                onPressed: _showToast,
+                child: const Text("NATIVE :: Show Toast Message")),
             TextButton(
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("스낵바는 이런거다 퇴근 H-3"))
-                  );
+                      const SnackBar(content: Text("스낵바는 이런거다 퇴근 H-3")));
                 },
-                child: const Text("FLUTTER :: Show SnackBar")
-            ),
-
+                child: const Text("FLUTTER :: Show SnackBar")),
             ListTile(
               title: const Text("Android"),
               leading: Radio(
-                  value: OS.android, groupValue: _os,
-                  onChanged: (OS? value){
+                  value: OS.android,
+                  groupValue: _os,
+                  onChanged: (OS? value) {
                     setState(() {
                       _os = value!;
                     });
                   }),
             ),
-
             ListTile(
               title: const Text("iOS"),
               leading: Radio(
-                  value: OS.ios, groupValue: _os,
-                  onChanged: (OS? value){
+                  value: OS.ios,
+                  groupValue: _os,
+                  onChanged: (OS? value) {
                     setState(() {
                       _os = value!;
                     });
                   }),
             ),
-
           ],
         ),
       ),
