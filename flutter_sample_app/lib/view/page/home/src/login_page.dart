@@ -8,7 +8,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  static const platform = MethodChannel('com.sample.shicmts');
+  static const platform = MethodChannel('com.shicmts.flutter_sample_app');
   final formKey = new GlobalKey<FormState>(); //하단 메세지 키
 
   late String _email;
@@ -20,11 +20,11 @@ class _LoginPageState extends State<LoginPage> {
     if (form!.validate()) {
       form.save();
       print('Form is valid Email: $_email, password: $_password');
-      String email = _email;
-      String password = _password;
+
       String result = 'null';
-      try {
-        result = await platform.invokeMethod("getUserList", {
+      try {String email = _email;
+      String password = _password;
+        result = await platform.invokeMethod("getUserList", <String, String> {
           "email": email,
           "password": password
         }); //, {"email": email, "password": password}
@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
               barrierDismissible: false,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  title: Text('로그인'),
+                  title: const Text('로그인'),
                   content: SingleChildScrollView(
                     child: ListBody(
                       children: <Widget>[
@@ -45,21 +45,21 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   actions: <Widget>[
-                    FlatButton(
+                    TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text('ok')),
-                    FlatButton(
+                        child: const Text('ok')),
+                    TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text('cancel')),
+                        child: const Text('cancel')),
                   ],
                 );
               });
         }
-        print('정보를 제대로 가져왔습니다. ${result}');
+        print('정보를 제대로 가져왔습니다. $result');
       } on PlatformException catch (e) {
         print("정보를 가지고 오지 못했습니다. ${e.message}");
       }
@@ -74,31 +74,28 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Form(
           key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email'),
                 validator: (value) =>
                     value!.isEmpty ? 'Email can\'t be empty' : null,
                 onSaved: (value) => _email = value!,
               ),
               TextFormField(
                 obscureText: true,
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: const InputDecoration(labelText: 'Password'),
                 validator: (value) =>
                     value!.isEmpty ? 'Password can\'t be empty' : null,
                 onSaved: (value) => _password = value!,
               ),
-              RaisedButton(
-                child: Text(
-                  'Login',
-                  style: TextStyle(fontSize: 20.0),
-                ),
+              ElevatedButton(
                 onPressed: _saveAndGetUserList,
+                child: const Text('Login', style: TextStyle(fontSize: 20.0),),
               ),
             ],
           ),
