@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shicmts.flutter_sample_app">
    <application
-        android:label="flutter_sample_app"
+        android:label="보글보글 플러터"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">

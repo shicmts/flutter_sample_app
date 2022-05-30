@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   webview_flutter: ^3.0.4
   syncfusion_flutter_datepicker: ^18.4.31-beta
+  google_fonts: ^2.3.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -88,3 +89,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: GalleryIcons
+      fonts:
+        - asset: packages/flutter_gallery_assets/fonts/GalleryIcons.ttf

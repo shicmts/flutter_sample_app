@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sample_app/view/page/home/home_tab_main.dart';
-import 'package:flutter_sample_app/view/page/home/home_tab_sub1.dart';
-import 'package:flutter_sample_app/view/page/home/home_tab_sub2.dart';
+import 'package:flutter_sample_app/theme/app_theme.dart';
+import 'home_tab_main.dart';
+import 'home_tab_sub1.dart';
+import 'home_tab_sub2.dart';
 
 class HomePageMain extends StatefulWidget {
   const HomePageMain({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class HomePageMain extends StatefulWidget {
   State<StatefulWidget> createState() => _HomePageMainState();
 }
 
-class _HomePageMainState extends State<HomePageMain> {
+class _HomePageMainState extends State<HomePageMain> with SingleTickerProviderStateMixin {
   static const List<Tab> _tabs = [
     Tab(text: "메인"),
     Tab(text: "서브1"),
@@ -25,14 +26,19 @@ class _HomePageMainState extends State<HomePageMain> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(bottom: const TabBar(tabs: _tabs)),
-          body: TabBarView(children: _views),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: AppTheme.mainBlue,
+            title: const Text("보글보글 플러터"),
+            bottom: const TabBar(tabs: _tabs)
         ),
+        body: TabBarView(children: _views),
       ),
     );
   }
+
+
 }
