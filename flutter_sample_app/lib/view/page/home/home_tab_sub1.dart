@@ -19,8 +19,9 @@ class HomeTabSub1State extends State<HomeTabSub1> {
 
   @override
   Widget build(BuildContext context) {
-    return WebView(
+    return const WebView(
       initialUrl: 'https://www.naver.com',
+      javascriptMode: JavascriptMode.unrestricted,
     );
   }
 }
