@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample_app/view/page/players/player_main.dart';
+import 'package:flutter_sample_app/view/page/project/project_main.dart';
 import 'page/drawer/drawer_root_controller.dart';
 import 'page/home/home_page_main.dart';
 
@@ -57,7 +58,7 @@ class _RootPageState extends State<RootPage> {
       } else if (drawerIndex == DrawerIndex.project) {
         if (mounted) {
           setState(() {
-            screenView = const HomePageMain();
+            screenView = const ProjectMain();
           });
         }
       }
