@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-enum DrawerIndex { home, player, feedback, project }
+enum DrawerIndex { home, player, chart, project }
 
 class DrawerList {
   DrawerList({

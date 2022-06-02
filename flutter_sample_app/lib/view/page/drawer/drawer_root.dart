@@ -4,12 +4,12 @@ import 'drawer_list.dart';
 import '../../../theme/app_theme.dart';
 
 class RootDrawer extends StatefulWidget {
-  const RootDrawer({
-    required this.screenIndex,
-    required this.iconAnimationController,
-    required this.callbackIndex,
-    Key? key
-  }) : super(key: key);
+  const RootDrawer(
+      {required this.screenIndex,
+      required this.iconAnimationController,
+      required this.callbackIndex,
+      Key? key})
+      : super(key: key);
 
   final AnimationController iconAnimationController;
   final DrawerIndex screenIndex;
@@ -27,31 +27,26 @@ class _RootDrawerState extends State<RootDrawer> {
     setDrawerListArray();
   }
 
-  void setDrawerListArray(){
+  void setDrawerListArray() {
     drawerList = <DrawerList>[
       DrawerList(
           index: DrawerIndex.home,
           labelName: "홈",
-          icon: const Icon(Icons.home_filled)
-      ),
+          icon: const Icon(Icons.home_filled)),
       DrawerList(
           index: DrawerIndex.player,
           labelName: "플레이어",
-          icon: const Icon(Icons.people_alt_rounded)
-      ),
+          icon: const Icon(Icons.people_alt_rounded)),
       DrawerList(
-          index: DrawerIndex.feedback,
-          labelName: "피드백",
-          icon: const Icon(Icons.feedback_rounded)
-      ),
+          index: DrawerIndex.chart,
+          labelName: "차트",
+          icon: const Icon(Icons.feedback_rounded)),
       DrawerList(
           index: DrawerIndex.project,
           labelName: "프로젝트",
-          icon: const Icon(Icons.backup_rounded)
-      ),
+          icon: const Icon(Icons.backup_rounded)),
     ];
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -90,10 +85,7 @@ class _RootDrawerState extends State<RootDrawer> {
               padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
               child: Row(
                 children: <Widget>[
-                  const SizedBox(
-                    width: 6.0,
-                    height: 46.0
-                  ),
+                  const SizedBox(width: 6.0, height: 46.0),
                   const Padding(
                     padding: EdgeInsets.all(4.0),
                   ),
@@ -129,7 +121,7 @@ class _RootDrawerState extends State<RootDrawer> {
               ),
             ),
             if (widget.screenIndex == listData.index)
-               AnimatedBuilder(
+              AnimatedBuilder(
                 animation: widget.iconAnimationController,
                 builder: (BuildContext context, _) {
                   return Transform(

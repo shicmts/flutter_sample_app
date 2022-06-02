@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -19,6 +21,11 @@ class _WebViewStackState extends State<WebViewStack> {
         WebView(
           initialUrl: 'https://www.naver.com',
           javascriptMode: JavascriptMode.unrestricted,
+          gestureRecognizers: Set()
+            ..add(Factory<TapGestureRecognizer>(() => TapGestureRecognizer()
+              ..onTapDown = (tap) {
+                print("This one prints");
+              })),
           onPageStarted: (url) {
             setState(() {
               loadingPercentage = 0;
