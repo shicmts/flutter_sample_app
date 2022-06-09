@@ -9,12 +9,14 @@ import 'view/root_page.dart';
 Future<void> main() async {
   // 비동기 메서드를 위한 처리
   // runApp 메소드의 시작 지점에서 Flutter 엔진과 위젯의 바인딩이 미리 완료되어 있게함
-  WidgetsFlutterBinding.ensureInitialized();
-  // 오리엔테이션 고정된 후 runApp
-  await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown
-  ]).then((_) => runApp(const MyApp()));
+  // WidgetsFlutterBinding.ensureInitialized();
+  // // 오리엔테이션 고정된 후 runApp
+  // await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitDown
+  // ]).then((_) => runApp(const MyApp()));
+
+  runApp(const MyApp());
 
 }
 
