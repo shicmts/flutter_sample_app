@@ -37,6 +37,8 @@ import Flutter
     private func receiveUserList(result: FlutterResult) {
         if(email=="aaa" && password=="aaa"){
             result("100")
+        }else{
+          result("200")
         }
     }
 

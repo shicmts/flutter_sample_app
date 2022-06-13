@@ -22,9 +22,10 @@ class _LoginPageState extends State<LoginPage> {
       print('Form is valid Email: $_email, password: $_password');
 
       String result = 'null';
-      try {String email = _email;
-      String password = _password;
-        result = await platform.invokeMethod("getUserList", <String, String> {
+      try {
+        String email = _email;
+        String password = _password;
+        result = await platform.invokeMethod("getUserList", <String, String>{
           "email": email,
           "password": password
         }); //, {"email": email, "password": password}
@@ -42,6 +43,32 @@ class _LoginPageState extends State<LoginPage> {
                         Text(
                             "정상적으로 로그인 되었습니다. email:${email}, password:${password}")
                       ],
+                    ),
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('ok')),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('cancel')),
+                  ],
+                );
+              });
+        } else if (result == "200") {
+          showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text('로그인'),
+                  content: SingleChildScrollView(
+                    child: ListBody(
+                      children: <Widget>[Text("아이디 비밀번호가 틀립니다.")],
                     ),
                   ),
                   actions: <Widget>[
@@ -95,8 +122,15 @@ class _LoginPageState extends State<LoginPage> {
               ),
               ElevatedButton(
                 onPressed: _saveAndGetUserList,
-                child: const Text('Login', style: TextStyle(fontSize: 20.0),),
+                child: const Text(
+                  'Login',
+                  style: TextStyle(fontSize: 20.0),
+                ),
               ),
+              Text(
+                "네이티브를 이용해 id:aaa , password : aaa 로 로그인 가능",
+                style: TextStyle(fontSize: 15),
+              )
             ],
           ),
         ),
